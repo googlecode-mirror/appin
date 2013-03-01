@@ -1,0 +1,148 @@
+Appin is a simple framework to design and evaluate user interfaces for touch 
+enabled phone using simple web techniques.
+
+Except for jQuery the following applies:
+
+Copyright (C) 2013 Fabian Ström (fs@fabianstrom.se)
+
+This program is free software: you can redistribute it and/or modify it under 
+the terms of the GNU General Public License as published by the Free Software 
+Foundation, either version 3 of the License, or (at your option) any later 
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with 
+this program.  If not, see <http://www.gnu.org/licenses/>.
+
+********************************************************************************
+
+Table of contents:
+0. INTRODUCTION
+
+1. FILES AND DESCRIPTIONS
+  1.1 index.php
+  1.2 viewHandler.php
+  1.3 views
+
+2. INSTALLATION
+
+3. HOW TO USE
+  3.1 About views
+  3.2 Adding a view
+  3.3 Linking / switching between views
+  3.4 Adding a menu for the menu button
+
+4. ABOUT THE PHYSICAL BUTTONS
+
+5. INCLUDING IMAGES
+  5.1 Example
+
+********************************************************************************
+
+0. INTRODUCTION
+Appin is a simple framework written in php/html/javascript to design and
+evaluate user interfaces for touch enabled phones using a web interface. 
+
+The goal is to provide a method to switch between different screens (or views as 
+they are called in this document) and give total control over the rest of the 
+interface. For simplicity, jquery is available (and used for the view switching)
+to use within the views.
+
+********************************************************************************
+
+1. FILES AND DESCRIPTIONS
+Appin relies on the following files:
+ - index.php, where everything is presented to the end evaluator
+ - jquery.js, a copy of the jquery javascript library
+ - viewHandler.php, a php script to support the switching of views
+ - views, a folder with the views
+
+1.1 index.php
+Index.html presents everything to the evaluator and is a simple simulator for
+a phone with three physical buttons: back, reset and menu (please see 4. ABOUT
+BUTTONS to learn more). 
+
+In the top of the file you can change the width and/or height of the simulated
+phone. (A good thing to keep in mind is that the iPhone has an aspect ratio of
+3:2.) The default is a width of 320 pixels and a height of 480 pixels.
+
+1.2 viewHandler.php
+ViewHandler.php is a php script that (with the help of AJAX) render the views.
+For more information, please consult the comments in viewHandler.php.
+
+1.3 views
+In the directory "views" the views are placed (see 3.1).
+As default there is only one view, main. IT SHOULD NOT BE DELETED.
+
+********************************************************************************
+
+2. INSTALLATION
+Copy index.php, jquery.js, viewHandler.php and (the directory) views to the 
+desired location on a web server. You need to have php enabled for Appin to 
+work.
+
+********************************************************************************
+
+3. HOW TO USE
+Every screen that is presented is called a "view". When the application is
+started the view "main" is shown. Jquery is available for using.
+
+3.1 About views:
+Each view is a set of three files (html.html, css.css and js.js) that lies in a
+folder with the same name as the view. All the views are placed in the "views"
+directory.
+
+3.2 Adding a view:
+When adding a view, create a folder with its name and the three files html.html,
+css.css and js.js. Then write appropriate content for each file (place the html
+in html.html, the css in css.css and the javascript in js.js).
+
+3.3 Linking / switching between views:
+To change the view call the javascript function setView(view), where view is a
+string with the name of the view to switch to. This can (for example) be done
+with a button:
+	<button onclick="setView('myView');">Change view to myView</button>
+or a link:
+	<a href="" onclick="setView('myView');">Change view to myView</a>
+
+3.4 Adding a menu for the menu button
+A div element with the id "menu" is considered to be a menu. Use this and place
+and create the menu as you wish. When the user presses the menu button the div
+will be toggled by jquery.
+
+********************************************************************************
+
+4. ABOUT THE PHYSICAL BUTTONS
+There are three "physical" buttons: back, reset and menu to make the simulator
+more familiar to users of the Android mobile operating system. Each button has
+its own actions.
+
+4.1 Back
+The back button shows the previous view.
+
+4.2 Reset 
+The Reset button restarts the application.
+
+4.3 Menu
+The menu button tries to open or close the menu. Please see 3.4 for more 
+information.
+
+********************************************************************************
+
+5. INCLUDING IMAGES
+To include an image in a view, place the image IN THE DIRECTORY OF THE VIEW (or
+a sub directory) and write as you normally would:
+	<img src="myImage.jpg" ...>
+viewHandler.php will automatically add the correct path for the image by
+replacing src="myImage.jpg" with src="views/myView/myImage.jpg".
+
+5.1 Example
+Suppose you have the image monkey.jpg placed in the view animals.
+To include the image, write
+	<img src="monkey.jpg">
+The presented html will be 
+	<img src="views/animals/monkey.jpg">
+And the image will appear as it should.
