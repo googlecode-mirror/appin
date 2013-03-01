@@ -23,7 +23,7 @@ if (!is_dir($path)) {
 }
 
 /* read the files */
-$html = file_get_contents("$path/html.html");
+$html = file_get_contents("$path/index.html");
 $css = file_get_contents("$path/css.css");
 $js = file_get_contents("$path/js.js");
 

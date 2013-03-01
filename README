@@ -91,14 +91,14 @@ Every screen that is presented is called a "view". When the application is
 started the view "main" is shown. Jquery is available for using.
 
 3.1 About views:
-Each view is a set of three files (html.html, css.css and js.js) that lies in a
+Each view is a set of three files (index.html, css.css and js.js) that lies in a
 folder with the same name as the view. All the views are placed in the "views"
 directory.
 
 3.2 Adding a view:
-When adding a view, create a folder with its name and the three files html.html,
-css.css and js.js. Then write appropriate content for each file (place the html
-in html.html, the css in css.css and the javascript in js.js).
+When adding a view, create a folder with its name and the three files 
+index.html, css.css and js.js. Then write appropriate content for each file 
+(place the html in index.html, the css in css.css and the javascript in js.js).
 
 3.3 Linking / switching between views:
 To change the view call the javascript function setView(view), where view is a
