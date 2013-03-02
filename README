@@ -50,13 +50,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   3.4 Adding a menu for the menu button
 
 4. ABOUT THE PHYSICAL BUTTONS
- 4.1 Back
- 4.2 Reset
- 4.3 Menu
- 4.4 Rotate
+  4.1 Back
+  4.2 Reset
+  4.3 Menu
+  4.4 Rotate
 
 5. INCLUDING IMAGES AND OTHER THINGS
   5.1 Example
+
+6. API DESCRIPTION
+  6.1 setView
+  6.2 changeMode
+  6.3 setStatus
 
 ** 0. Introduction *************************************************************
 
@@ -65,7 +70,7 @@ evaluate user interfaces for touch enabled phones using a web interface.
 
 The goal is to provide a method to switch between different screens (or views as 
 they are called in this document) and give total control over the rest of the 
-interface. For simplicity, jquery is available (and used for the view switching)
+interface. For simplicity, jQuery is available (and used for the view switching)
 to use within the views.
 
 ** 1. FILES AND DESCRIPTIONS ***************************************************
@@ -109,7 +114,7 @@ the use of Google CDN.
 
 3. HOW TO USE
 Every screen that is presented is called a "view". When the application is
-started the view "main" is shown. Jquery is available for using.
+started the view "main" is shown. jQuery is available for using.
 
 3.1 About views:
 Each view is a set of three files (index.html, css.css and js.js) that lies in a
@@ -132,11 +137,14 @@ or a link:
 3.4 Adding a menu for the menu button
 A div element with the id "menu" is considered to be a menu. Use this and place
 and create the menu as you wish. When the user presses the menu button the div
-will be toggled by jquery.
+will be toggled by jQuery.
 
 3.4.1 About rotating
 To support the menu when the view has been rotated it, please don't give the
 menu a relative position and hard code distance to the top.
+
+If you want to rotate the view, call changeMode("portrait") or 
+changeMode("landscape") to change to the desired mode.
 
 ** 4. ABOUT THE PHYSICAL BUTTONS ***********************************************
 
@@ -174,3 +182,21 @@ To include the image, write
 The presented html will be 
 	<img src="views/animals/monkey.jpg">
 and the image will appear as it should.
+
+** 6. API DESCRIPTION **********************************************************
+Here is a description of the available api calls:
+
+6.1 setView
+Prototype: setView(view)
+Desctiption: Changes the view to the given one. view should be a string with the
+desired view to switch to. The status is updated accordingly while changing the 
+view.
+
+6.2 changeMode
+Prototype: changeMode("portrait") or changeMode("landscape")
+Description: Rotate the device to portrait or landscape mode. The status is
+updated whilst rotating.
+
+6.3 setStatus
+Prototype: setStatus(stat)
+Description: Set (the html code) stat as the html code of the div id="status".

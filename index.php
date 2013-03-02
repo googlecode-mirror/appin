@@ -73,6 +73,8 @@ $view_height = 480;
 		div#status {
 			font-size: 12px;
 			text-align: center;
+			width: <?php echo $view_width; ?>px;
+			margin: 0px auto;
 		} 
 
 		/* to show errors */

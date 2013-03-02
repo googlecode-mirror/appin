@@ -69,7 +69,7 @@ function setView(view) {
 	}
 
 	/* set the system status to loading (viev) */
-	$("#status").html("<p>Loading " + view + ".</p>");
+	setStatus("<p>Loading " + view + ".</p>");
 
 	/* push the old view onto the stack */
 	viewStack.push(currentView);
@@ -102,7 +102,7 @@ function setView(view) {
 	});
 
 	/* set the system status to done loading */
-	$("#status").html("<p>Done!</p>");
+	setStatus("<p>Done!</p>");
 }
 
 /* 
@@ -116,6 +116,9 @@ function changeMode(newMode) {
 
 	/* save the new mode */
 	mode = newMode;
+
+	/* set the status */
+	setStatus("Rotating to " + newMode);
 
 	/* remove the classes */
 	$("#box").removeClass("portait landscape widthheightportrait widthheightlandscape");
@@ -136,4 +139,11 @@ function changeMode(newMode) {
 		$(".menuButton").addClass("menuButtonLandscape");
 		$("#buttons").addClass("buttonsLandscape");
 	}
+
+	/* set the status */
+	setStatus("<p>Done!</p>");
+}
+
+function setStatus(stat) {
+	$("#status").html(stat);
 }
