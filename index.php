@@ -10,7 +10,7 @@ $width_height = 480;
 	<head>
 		<title>Appin</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script src="jquery.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<style>
 		/* set a background color and remove margin from the browser window */
 		body, html {
