@@ -128,6 +128,11 @@ $view_height = 480;
 		div#buttons {
 			float: left;
 		}
+
+		/* to make a button flash when hovering */
+		.button:hover {
+			background-color: #DDDDDD;
+		}
 	</style>
 	<script src="appin-js.js"></script>
 	<script id="viewScripts"></script> <!-- to hold the scripts of the current view -->
@@ -141,10 +146,10 @@ $view_height = 480;
 			<p>If you still don't see anything, please make sure there is a main view (or contact someone responsible).</p>
 		</div> <!-- view -->
 		<div id="buttons"> <!-- the buttons -->
-			<div class="menuButton" id="buttonBack">Back</div>
-			<div class="menuButton" id="buttonMenu">Menu</div>
-			<div class="menuButton" id="buttonReset">Reset</div>
-			<div class="menuButton" id="buttonRotate">Rotate</div>
+			<div class="menuButton button" id="buttonBack">Back</div>
+			<div class="menuButton button" id="buttonMenu">Menu</div>
+			<div class="menuButton button" id="buttonReset">Reset</div>
+			<div class="menuButton button" id="buttonRotate">Rotate</div>
 		</div> <!-- buttons -->
 	</div> <!-- box -->
 	<div id="status"> <!-- to hold the app status (done, loading, etc.) -->
