@@ -1,10 +1,14 @@
 var viewStack = new Array(); // to keep track of the order the views were visited
 var currentView; // to know what to push onto the stack
+var mode; // to know if we have portrait or landscape mode
 
 /* set some functionality when the document is ready */
 $(document).ready(function() {
 	/* load the main view at startup */
 	setView("main");
+
+	/* we want portrait mode */
+	changeMode("portrait");
 
 	/* 
 	 * set the functionality of the back button,
@@ -45,6 +49,14 @@ $(document).ready(function() {
 	 * we want to make sure the menu is hidden
 	 */
 	$("#menu").hide();
+
+	/*
+	 * make the rotate button toggle portrait/landscape
+	 */
+	$("#buttonRotate").click(function() {
+		var action = (mode == "portrait") ? "landscape" : "portrait";
+		changeMode(action);
+	});
 });
 
 /**
@@ -91,4 +103,37 @@ function setView(view) {
 
 	/* set the system status to done loading */
 	$("#status").html("<p>Done!</p>");
+}
+
+/* 
+ * to switch between portrait and landscape
+ * Paremeters: newMode, a string of either "portrait" or "landscape".
+ */
+function changeMode(newMode) {
+	if (newMode != "portrait" && newMode != "landscape") {
+		return;
+	}
+
+	/* save the new mode */
+	mode = newMode;
+
+	/* remove the classes */
+	$("#box").removeClass("portait landscape widthheightportrait widthheightlandscape");
+	$("#view").removeClass("widthheightportrait widthheightlandscape");
+	$(".menuButton").removeClass("menuButtonPortrait menuButtonLandscape");
+	$("#buttons").removeClass("buttonsPortrait buttonsLandscape");
+
+	
+	if (newMode == "portrait") {
+		$("#box").addClass("portrait widthheightportrait");
+		$("#view").addClass("widthheightportrait");
+		$(".menuButton").addClass("menuButtonPortrait");
+		$("#buttons").addClass("buttonsPortrait");
+	} else {
+		/* newMode is landscape */
+		$("#box").addClass("widthheightlandscape landscape");
+		$("#view").addClass("widthheightlandscape");
+		$(".menuButton").addClass("menuButtonLandscape");
+		$("#buttons").addClass("buttonsLandscape");
+	}
 }

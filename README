@@ -50,6 +50,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   3.4 Adding a menu for the menu button
 
 4. ABOUT THE PHYSICAL BUTTONS
+ 4.1 Back
+ 4.2 Reset
+ 4.3 Menu
+ 4.4 Rotate
 
 5. INCLUDING IMAGES AND OTHER THINGS
   5.1 Example
@@ -68,7 +72,6 @@ to use within the views.
 
 Appin relies on the following files:
  - index.php, where everything is presented to the end evaluator
- - jquery.js, a copy of the jquery javascript library
  - viewHandler.php, a php script to support the switching of views
  - views, a folder with the views
  - appin-js.js, the javascript that makes up the core functionality
@@ -99,6 +102,9 @@ Copy index.php, jquery.js, viewHandler.php and (the directory) views to the
 desired location on a web server. You need to have php enabled for Appin to 
 work.
 
+If Appin is to used offline, it is a good idea to download jQuery and disable
+the use of Google CDN.
+
 ** 3. HOW TO USE ***************************************************************
 
 3. HOW TO USE
@@ -128,6 +134,10 @@ A div element with the id "menu" is considered to be a menu. Use this and place
 and create the menu as you wish. When the user presses the menu button the div
 will be toggled by jquery.
 
+3.4.1 About rotating
+To support the menu when the view has been rotated it, please don't give the
+menu a relative position and hard code distance to the top.
+
 ** 4. ABOUT THE PHYSICAL BUTTONS ***********************************************
 
 There are three "physical" buttons: back, reset and menu to make the simulator
@@ -144,6 +154,9 @@ The Reset button restarts the application.
 The menu button tries to open or close the menu. Please see 3.4 for more 
 information.
 
+4.4 Rotate
+Press this button to switch between portrait and landscape mode.
+
 ** 5. INCLUDING IMAGES AND OTHER THINGS ****************************************
 
 To include an image in a view, place the image IN THE DIRECTORY OF THE VIEW (or
@@ -152,7 +165,7 @@ a sub directory) and write as you normally would:
 viewHandler.php will automatically add the correct path for the image by
 replacing src="myImage.jpg" with src="views/myView/myImage.jpg".
 
-EVERY src="..." WILL BE REPLACED WITH src="views/myView/...".
+EVERY src="..." WILL BE REPLACED WITH src="views/myView/..." in index.html.
 
 5.1 Example
 Suppose you have the image monkey.jpg placed in the view animals.
