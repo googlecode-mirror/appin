@@ -4,6 +4,9 @@ $view_width = 320;
 
 /* the height of the view */
 $view_height = 480;
+
+/* the number of physical buttons */
+$number_of_physical_buttons = 4;
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,7 +95,7 @@ $view_height = 480;
 		}
 
 		div.menuButtonPortrait {
-			width: <?php echo ($view_width/4 - 40); ?>px; /* we have 4 buttons, each with a space of 40 pixels around, adjust the width so the buttons are as wide as possible */
+			width: <?php echo ($view_width/$number_of_physical_buttons - 40); ?>px; /* we have 4 buttons, each with a space of 40 pixels around, adjust the width so the buttons are as wide as possible */
 			margin: 7px 10px 0px 10px; /* set some margins */
 			padding: 10px; /* set padding (to make the text appear more in the center */
 			float: left; /* the buttons are to appear on a row */
@@ -100,7 +103,7 @@ $view_height = 480;
 
 		/* and landscape */
 		div.menuButtonLandscape {
-			height: <?php echo ($view_width/4 - 30); ?>px; /* we have 4 buttons, each with a space of 40 pixels around, adjust the width so the buttons are as wide as possible */
+			height: <?php echo ($view_width/$number_of_physical_buttons - 30); ?>px; /* we have 4 buttons, each with a space of 40 pixels around, adjust the width so the buttons are as wide as possible */
 			width: 40px;
 			margin: 7px 10px 0px 10px; /* set some margins */
 			padding: 10px; /* set padding (to make the text appear more in the center */
@@ -155,8 +158,9 @@ $view_height = 480;
 	<div id="status"> <!-- to hold the app status (done, loading, etc.) -->
 		&nbsp;
 	</div> <!-- status -->
-	<!-- <div id="foot">
-		<p class="copy">&copy; (this year) (the designer)</p>
-	</div> --> <!-- foot -->
+	<div id="foot">
+		<!-- please leave this notice here -->
+		<p class="copy">This application interface design is powered by <a href="https://code.google.com/p/appin">Appin</a>.</p>
+	</div> <!-- foot -->
 </body>
 </html>

@@ -45,7 +45,7 @@ if ($html === false) {
 $res = preg_replace('/src="(.*)"/', "src=\"$path/$1\"", $html);
 if ($res == NULL) {
 	header("HTTP/1.1 500 Internal Server Error");
-	die(json_encode(array("err" => "Could not replace image tags.")));
+	die(json_encode(array("err" => "Could not replace src tags.")));
 } 
 
 /* update the html to the replaced */

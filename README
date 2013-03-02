@@ -48,6 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   3.2 Adding a view
   3.3 Linking / switching between views
   3.4 Adding a menu for the menu button
+  3.5 Adding a physical button
 
 4. ABOUT THE PHYSICAL BUTTONS
   4.1 Back
@@ -62,6 +63,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   6.1 setView
   6.2 changeMode
   6.3 setStatus
+
+7. OUTLINES OF APPIN-JS.JS AND VIEWHANDLER.PHP
 
 ** 0. Introduction *************************************************************
 
@@ -146,6 +149,15 @@ menu a relative position and hard code distance to the top.
 If you want to rotate the view, call changeMode("portrait") or 
 changeMode("landscape") to change to the desired mode.
 
+3.5 Adding a physical button
+To add a physical button there are three things you need to do:
+ - Add the html for the button in <div id="buttons">:
+   <div class="menuButton button" id="myButtonId">myButton</div>
+ - Update $number_of_physical_buttons (at the top of index.php) to the correct
+   number of buttons
+ - Add a click handler for the button, please see appin-js.js (the 
+   $(document).ready(function() {}); part).
+
 ** 4. ABOUT THE PHYSICAL BUTTONS ***********************************************
 
 There are three "physical" buttons: back, reset and menu to make the simulator
@@ -200,3 +212,41 @@ updated whilst rotating.
 6.3 setStatus
 Prototype: setStatus(stat)
 Description: Set (the html code) stat as the html code of the div id="status".
+
+** 7. OUTLINES OF APPIN-JS.JS AND VIEWHANDLER.PHP ******************************
+
+7.1 Outline of appin-js.js
+  - First we declare some variables: viewStack (to keep track of how the user
+    changes views), currentView (to know what view we are in) and mode (portrait
+    or landscape).
+  - Then we sets some things up at page startup:
+    + Set the view to main.
+    + Set the mode to portrait.
+    + Set handlers for when clicking the physical buttons.
+  - In the function setView we writes the view switching functionality:
+    + We check the argument is a string.
+    + Then we set the status, pushes the current view on the history stack and
+      updates the currentView variable to the new view.
+    + We hide the menu.
+    + We load the new view via ajax (and checks for errors).
+    + At last we updates the html/css/js and sets the status to done.
+  - In changeMode we changes the mode:
+    + First we check newMode is either "portrait" or "landscape".
+    + We sets the mode variable to the new mode and updates the status.
+    + We removes every mode-related css class from all affected elements.
+    + At last we add the correct classes to all the affected elements.
+    + Then we updates the status to done.
+  - In setStatus we just sets the html of the <div id="status"> element.
+
+7.2 Outline of viewHandler.php
+  - First we check there is a $_GET["v"] variable, show an error page if not.
+  - We get the view variable and the path
+  - Use regexp to check there are no ".." in the path (to avoid directory 
+    traversal).
+  - Check if the directory of the view do exist
+  - Read the html, js and css files.
+  - Check the files were read.
+  - Use regexp to change (in the html file) src="..." to src="views/view/..."
+    and update the html variable
+  - Create an array of the html, js and the css and json-encode it.
+  - Send the json http header and then the json object.

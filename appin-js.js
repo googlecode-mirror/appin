@@ -30,9 +30,10 @@ $(document).ready(function() {
 	 * showing main)
 	 */
 	$("#buttonReset").click(function() {
-		/* reset the stack and curretView */
+		/* reset the stack, curretView and the mode */
 		currentView = "main";
 		viewStack = new Array();
+		changeMode("portrait");
 
 		/* show main */
 		setView("main");
@@ -77,6 +78,8 @@ function setView(view) {
 	/* set the new view */
 	currentView = view;
 
+	
+
 	/* hide the menu */
 	$("#menu").hide("fast");
 	/* load the html/css/js, most should be self explaining */
@@ -99,10 +102,10 @@ function setView(view) {
 		$("#view").html(data.html);
 		$("#viewCss").html(data.css);
 		$("#viewScripts").html(data.js);
-	});
 
-	/* set the system status to done loading */
-	setStatus("<p>Done!</p>");
+		/* set the system status to done loading */
+		setStatus("<p>Done!</p>");
+	});
 }
 
 /* 
@@ -128,12 +131,15 @@ function changeMode(newMode) {
 
 	
 	if (newMode == "portrait") {
+		/* set the css */
 		$("#box").addClass("portrait widthheightportrait");
 		$("#view").addClass("widthheightportrait");
 		$(".menuButton").addClass("menuButtonPortrait");
 		$("#buttons").addClass("buttonsPortrait");
 	} else {
 		/* newMode is landscape */
+
+		/* set the css */
 		$("#box").addClass("widthheightlandscape landscape");
 		$("#view").addClass("widthheightlandscape");
 		$(".menuButton").addClass("menuButtonLandscape");
@@ -147,3 +153,4 @@ function changeMode(newMode) {
 function setStatus(stat) {
 	$("#status").html(stat);
 }
+
