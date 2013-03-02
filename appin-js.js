@@ -56,6 +56,9 @@ function setView(view) {
 		return;
 	}
 
+	/* set the system status to loading (viev) */
+	$("#status").html("<p>Loading " + view + ".</p>");
+
 	/* push the old view onto the stack */
 	viewStack.push(currentView);
 
@@ -71,13 +74,13 @@ function setView(view) {
 		statusCode: { /* to handle errors from the script */
 			404: function(data) {
 				var error = data.err;
-				$("#view").html("<p class\"error\">Could not load view " + error + ": it does not exist.</p>"); },
+				$("#status").html("<p class\"error\">Could not load view " + error + ": it does not exist.</p>"); },
 			400: function(data) {
 				var error = data.err;
-				$("#view").html("<p class\"error\">There is an error in the view syntax: " + error + ".</p>"); },
+				$("#status").html("<p class\"error\">There is an error in the view syntax: " + error + ".</p>"); },
 			500: function(data) {
 				var error = data.err;
-				$("#view").html("<p class\"error\">Could not load the view: " + error + ".</p>"); },
+				$("#status").html("<p class\"error\">Could not load the view: " + error + ".</p>"); },
 		}
 	}).done(function(data) {
 		/* we loaded the view successfully, set the data */
@@ -85,4 +88,7 @@ function setView(view) {
 		$("#viewCss").html(data.css);
 		$("#viewScripts").html(data.js);
 	});
+
+	/* set the system status to done loading */
+	$("#status").html("<p>Done!</p>");
 }

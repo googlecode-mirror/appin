@@ -11,14 +11,14 @@ are permitted provided that the following conditions are met:
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
- * Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright
-notice, this list of conditions and the following disclaimer in the
-documentation and/or other materials provided with the distribution.
- * Neither the name of the <organization> nor the
-names of its contributors may be used to endorse or promote products
-derived from this software without specific prior written permission.
+ * Redistributions of source code must retain the above copyright notice, this 
+   list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+ * Neither the name of the <organization> nor the names of its contributors may
+   be used to endorse or promote products derived from this software without 
+   specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,15 +31,15 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-********************************************************************************
+** Table of contents ***********************************************************
 
-Table of contents:
 0. INTRODUCTION
 
 1. FILES AND DESCRIPTIONS
   1.1 index.php
   1.2 viewHandler.php
   1.3 views
+  1.4 appin-js.js 
 
 2. INSTALLATION
 
@@ -51,12 +51,11 @@ Table of contents:
 
 4. ABOUT THE PHYSICAL BUTTONS
 
-5. INCLUDING IMAGES
+5. INCLUDING IMAGES AND OTHER THINGS
   5.1 Example
 
-********************************************************************************
+** 0. Introduction *************************************************************
 
-0. INTRODUCTION
 Appin is a simple framework written in php/html/javascript to design and
 evaluate user interfaces for touch enabled phones using a web interface. 
 
@@ -65,14 +64,14 @@ they are called in this document) and give total control over the rest of the
 interface. For simplicity, jquery is available (and used for the view switching)
 to use within the views.
 
-********************************************************************************
+** 1. FILES AND DESCRIPTIONS ***************************************************
 
-1. FILES AND DESCRIPTIONS
 Appin relies on the following files:
  - index.php, where everything is presented to the end evaluator
  - jquery.js, a copy of the jquery javascript library
  - viewHandler.php, a php script to support the switching of views
  - views, a folder with the views
+ - appin-js.js, the javascript that makes up the core functionality
 
 1.1 index.php
 Index.html presents everything to the evaluator and is a simple simulator for
@@ -91,14 +90,16 @@ For more information, please consult the comments in viewHandler.php.
 In the directory "views" the views are placed (see 3.1).
 As default there is only one view, main. IT SHOULD NOT BE DELETED.
 
-********************************************************************************
+1.4 appin-js.js 
+The javascript functions to handle the view switching.
 
-2. INSTALLATION
+** 2. INSTALLATION *************************************************************
+
 Copy index.php, jquery.js, viewHandler.php and (the directory) views to the 
 desired location on a web server. You need to have php enabled for Appin to 
 work.
 
-********************************************************************************
+** 3. HOW TO USE ***************************************************************
 
 3. HOW TO USE
 Every screen that is presented is called a "view". When the application is
@@ -127,9 +128,8 @@ A div element with the id "menu" is considered to be a menu. Use this and place
 and create the menu as you wish. When the user presses the menu button the div
 will be toggled by jquery.
 
-********************************************************************************
+** 4. ABOUT THE PHYSICAL BUTTONS ***********************************************
 
-4. ABOUT THE PHYSICAL BUTTONS
 There are three "physical" buttons: back, reset and menu to make the simulator
 more familiar to users of the Android mobile operating system. Each button has
 its own actions.
@@ -144,14 +144,15 @@ The Reset button restarts the application.
 The menu button tries to open or close the menu. Please see 3.4 for more 
 information.
 
-********************************************************************************
+** 5. INCLUDING IMAGES AND OTHER THINGS ****************************************
 
-5. INCLUDING IMAGES
 To include an image in a view, place the image IN THE DIRECTORY OF THE VIEW (or
 a sub directory) and write as you normally would:
 	<img src="myImage.jpg" ...>
 viewHandler.php will automatically add the correct path for the image by
 replacing src="myImage.jpg" with src="views/myView/myImage.jpg".
+
+EVERY src="..." WILL BE REPLACED WITH src="views/myView/...".
 
 5.1 Example
 Suppose you have the image monkey.jpg placed in the view animals.
@@ -159,4 +160,4 @@ To include the image, write
 	<img src="monkey.jpg">
 The presented html will be 
 	<img src="views/animals/monkey.jpg">
-And the image will appear as it should.
+and the image will appear as it should.

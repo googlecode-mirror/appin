@@ -44,6 +44,18 @@ $width_height = 480;
 			text-align: center; /* center the text */
 		}
 
+		/* to show the system status */
+		div#status {
+			font-size: 12px;
+			text-align: center;
+		} 
+
+		/* to show errors */
+		p.error {
+			color: red;
+			font-size: 14px;
+		}
+
 		/* to make the menu buttons look pretty */
 		div.menuButton {
 			background-color: #AAAAAA; /* make the buttons grey */
@@ -78,6 +90,9 @@ $width_height = 480;
 			<div class="menuButton" id="buttonMenu">Menu</div>
 		</div> <!-- buttons -->
 	</div> <!-- box -->
+	<div id="status"> <!-- to hold the app status (done, loading, etc.) -->
+		&nbsp;
+	</div> <!-- status -->
 	<!-- <div id="foot">
 		<p class="copy">&copy; (this year) (the designer)</p>
 	</div> --> <!-- foot -->
